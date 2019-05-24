@@ -6,7 +6,6 @@ using namespace std;
 template <typename E>
 class ListNode{
 	public:
-
 	E data;
 
 	ListNode<E>* prev;
@@ -15,7 +14,6 @@ class ListNode{
 	ListNode();
 	ListNode(E d);
 	~ListNode();
-
 };
 
 //ListNode.cpp

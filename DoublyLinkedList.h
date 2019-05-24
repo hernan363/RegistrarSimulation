@@ -5,6 +5,7 @@
 using namespace std;
 
 template <typename E>
+//.h
 class DoubleLinkedList{
 public:
 	int size;
@@ -13,13 +14,12 @@ public:
 
 	DoubleLinkedList();
 	~DoubleLinkedList();
-	
+
 	void insertFront(E data);
 	void insertBack(E data);
 
 	E removeFront();
 	E deletePos(E key);
-
 };
 
 //.cpp
@@ -39,7 +39,7 @@ DoubleLinkedList<E>::~DoubleLinkedList(){}
 //inserts from the front
 template <typename E>
 void DoubleLinkedList<E>::insertFront(E data){
-	
+
 
 	ListNode<E> *node = new ListNode<E>(data);
 	if(size==0){
@@ -86,7 +86,7 @@ E DoubleLinkedList<E>::removeFront(){
 	else{
 		front->next->prev = NULL;
 	}
-	
+
 	front = front ->next;
 	E val = temp -> data;
 	temp->next = NULL;
@@ -128,8 +128,7 @@ E DoubleLinkedList<E>::deletePos(E key){
 	current->prev = NULL;
 	--size;
 
-	//create temp to hgold value 
+	//create temp to hgold value
 	delete current;
 	return temp;
 }
-
