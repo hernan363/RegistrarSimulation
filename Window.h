@@ -1,3 +1,6 @@
+#ifndef WINDOW_H
+#define WINDOW_H
+
 #include <iostream>
 
 using namespace std;
@@ -13,3 +16,4 @@ public:
 	Window();
 	~Window();
 };
+#endif

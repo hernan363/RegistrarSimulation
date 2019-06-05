@@ -1,3 +1,6 @@
+#ifndef LISTNODE_H
+#define LISTNODE_H
+
 #include <iostream>
 #include <stdlib.h>
 
@@ -38,3 +41,4 @@ ListNode<E>::~ListNode(){
 	next = NULL;
 	prev = NULL;
 }
+#endif

@@ -1,4 +1,6 @@
-#include "Windows.h"
+#ifndef WINDOW_CPP
+#define WINDOW_CPP
+#include "Window.h"
 #include <iostream>
 
 using namespace std;
@@ -12,3 +14,4 @@ Window::Window(){
 }
 
 Window::~Window(){}
+#endif

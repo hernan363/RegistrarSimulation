@@ -1,3 +1,7 @@
+#ifndef DOUBLYLINKEDLIST_H
+#define DOUBLYLINKEDLIST_H
+
+
 #include "ListNode.h"
 #include <iostream>
 #include <stdlib.h>
@@ -6,14 +10,14 @@ using namespace std;
 
 template <typename E>
 //.h
-class DoubleLinkedList{
+class DoublyLinkedList{
 public:
 	int size;
 	ListNode<E>* front;
 	ListNode<E>* back;
 
-	DoubleLinkedList();
-	~DoubleLinkedList();
+	DoublyLinkedList();
+	~DoublyLinkedList();
 
 	void insertFront(E data);
 	void insertBack(E data);
@@ -24,7 +28,7 @@ public:
 
 //.cpp
 template <typename E>
-DoubleLinkedList<E>::DoubleLinkedList(){
+DoublyLinkedList<E>::DoublyLinkedList(){
 	front = new ListNode<E>();
 	back = new ListNode<E>();
 	front ->next = back;
@@ -33,12 +37,12 @@ DoubleLinkedList<E>::DoubleLinkedList(){
 }
 
 template <typename E>
-DoubleLinkedList<E>::~DoubleLinkedList(){}
+DoublyLinkedList<E>::~DoublyLinkedList(){}
 
 
 //inserts from the front
 template <typename E>
-void DoubleLinkedList<E>::insertFront(E data){
+void DoublyLinkedList<E>::insertFront(E data){
 
 
 	ListNode<E> *node = new ListNode<E>(data);
@@ -56,7 +60,7 @@ void DoubleLinkedList<E>::insertFront(E data){
 
 //inserts from the back
 template <typename E>
-void DoubleLinkedList<E>::insertBack(E data){
+void DoublyLinkedList<E>::insertBack(E data){
 	ListNode<E> *node = new ListNode<E>(data);
 
 	if(size == 0){
@@ -75,7 +79,7 @@ void DoubleLinkedList<E>::insertBack(E data){
 
 //removes the first node
 template <typename E>
-E DoubleLinkedList<E>::removeFront(){
+E DoublyLinkedList<E>::removeFront(){
 	//nmake neccessary checks
 
 	ListNode<E> *temp = front;
@@ -99,7 +103,7 @@ E DoubleLinkedList<E>::removeFront(){
 
 //deletes from any position
 template <typename E>
-E DoubleLinkedList<E>::deletePos(E key){
+E DoublyLinkedList<E>::deletePos(E key){
 	E temp;
 	ListNode<E> *current = front;
 	//search
@@ -132,3 +136,4 @@ E DoubleLinkedList<E>::deletePos(E key){
 	delete current;
 	return temp;
 }
+#endif

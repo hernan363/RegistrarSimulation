@@ -1,14 +1,19 @@
+#ifndef FILEREADER_H
+#define FILEREADER_H
+
 #include <fstream>
 #include <string>
 
-#include "QueueHolder.h"
+#include "WindowQueue.h"
+#include "StudentQueue.h"
+
 
 using namespace std;
 
 class fileReader {
 private:
-  QueueHolder qH;
-
+  WindowQueue wQ;
+  StudentQueue sQ;
   Window w;
   Student s;
 
@@ -19,8 +24,9 @@ private:
   Student createStudent(int arrivalTime, int requiredTime);
   Window createWindow();
 public:
-  void fillQueue();
+  void fillQueue(const char* fileName);
 
   fileReader();
   ~fileReader();
 };
+#endif

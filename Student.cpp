@@ -1,8 +1,11 @@
+#ifndef STUDENT_CPP
+#define STUDENT_CPP
+
 #include "Student.h"
 #include <iostream>
 
 using namespace std;
-
+Student::Student(){}
 Student::Student(int a, int t){
 	//variables needed
 	arvTime = a; // arrival time
@@ -11,3 +14,4 @@ Student::Student(int a, int t){
 }
 
 Student::~Student(){}
+#endif

@@ -1,5 +1,8 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 #include <iostream>
-#include "DoubleLinkedList.h"
+#include "DoublyLinkedList.h"
 
 using namespace std;
 template <typename E>
@@ -19,7 +22,7 @@ public:
 	int numElements;
 	int mSize;
 
-	DoubleLinkedList<E> D;
+	DoublyLinkedList<E> D;
 
 
 };
@@ -42,7 +45,7 @@ void Queue<E>::insert(E data){
 //removes from the front
 template <typename E>
 E Queue<E>::remove(){
-	E temp; 
+	E temp;
  	temp = D.removeFront();
  	return temp;
 }
@@ -64,4 +67,4 @@ template<typename E>
 int Queue<E>::isEmpty(){
 	return (D.size == 0);
 }
-
+#endif
