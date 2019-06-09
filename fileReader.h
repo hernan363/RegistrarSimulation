@@ -12,12 +12,13 @@ using namespace std;
 
 class fileReader {
 private:
-  WindowQueue wQ;
-  StudentQueue sQ;
+  WindowQueue* wQ;
+  StudentQueue* sQ;
   Window w;
   Student s;
 
   int time;
+  int numStudents;
 
   ifstream myFile;
   string line;

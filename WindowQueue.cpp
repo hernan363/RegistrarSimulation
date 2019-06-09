@@ -1,16 +1,20 @@
+#ifndef WINDOWQUEUE_CPP
+#define WINDOWQUEUE_CPP
+
 #include "WindowQueue.h"
 
+using namespace std;
+
+WindowQueue * WindowQueue::windowInstance = 0;
+
 WindowQueue::WindowQueue() {
-  firstInstance = 0;
 }
 
-WindowQueue::~WindowQueue(){}
-
 WindowQueue* WindowQueue::getInstance() {
-  if(firstInstance == 0){
-    firstInstance = new WindowQueue();
+  if(windowInstance == 0){
+    windowInstance = new WindowQueue();
   }
-  return firstInstance;
+  return windowInstance;
 }
 
 void WindowQueue::addWindow(Window w) {
@@ -20,3 +24,5 @@ void WindowQueue::addWindow(Window w) {
 Window WindowQueue::removeWindow(){
   return winQ.remove();
 }
+
+#endif

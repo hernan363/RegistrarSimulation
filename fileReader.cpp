@@ -2,12 +2,14 @@
 #define FILEREADER_CPP
 
 #include "fileReader.h"
+#include <string>
+
 
 fileReader::fileReader(){
   line = "";
   time = 0;
-  sQ.getInstance();
-  wQ.getInstance();
+  sQ = StudentQueue::getInstance();
+  wQ = WindowQueue::getInstance();
 
 }
 
@@ -15,25 +17,33 @@ fileReader::~fileReader(){}
 
 void fileReader::fillQueue(const char* fileName) {
   // myFile = (fileName);
+  myFile.open(fileName);
 
-  if(!myFile.isOpen()) {
+  if(!myFile.is_open()) {
     cout << "file could not open" << endl;
   } else {
     getline(myFile, line);
 
     for(int i = 0 ; i < line.length(); ++i) {
-      w = new Window();
-      wQ.addWindow(w);
+      w = Window();
+      wQ->addWindow(w);
     }
 
     while(getline(myFile, line)) {
       time = stoi(line);
-      for(int i = 0; i < line.length(); ++i) {
+      cout << time<< "first" << endl;
+      getline(myFile,line);
+      numStudents = stoi(line);
+
+      for(int i = 0; i < numStudents; ++i) {
+        cout << line<< "secoend" << endl;
+
         getline(myFile, line);
-        s = new Student(time, stoi(line));
-        sQ.addStudent(s);
+        s = Student(time, stoi(line));
+        sQ->addStudent(s);
       }
     }
   }
+  sQ->returnSize();
 }
 #endif

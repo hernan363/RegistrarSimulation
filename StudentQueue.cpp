@@ -2,13 +2,15 @@
 #define STUDENTQUEUE_CPP
 
 #include "StudentQueue.h"
+StudentQueue* StudentQueue::firstInstance = 0;
+
 
 StudentQueue::StudentQueue(){
   // firstInstance = NULL;
-  firstInstance = 0;
 }
-
-StudentQueue::~StudentQueue(){}
+void StudentQueue::returnSize(){
+  cout << stuQ.getSize() << endl;
+}
 
 StudentQueue* StudentQueue::getInstance() {
   if(firstInstance == 0) {
@@ -17,8 +19,8 @@ StudentQueue* StudentQueue::getInstance() {
   return firstInstance;
 }
 
-void StudentQueue::addStudent(Student* s) {
-  stuQ.insert(*s);
+void StudentQueue::addStudent(Student s) {
+  stuQ.insert(s);
 }
 
 Student StudentQueue::removeStudent(){

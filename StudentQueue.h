@@ -4,19 +4,26 @@
 #include "Queue.h"
 #include "Student.h"
 
+#include <iostream>
+
 using namespace std;
 
 class StudentQueue {
 public:
-  StudentQueue();
-  ~StudentQueue();
   static StudentQueue* getInstance();
   Student removeStudent();
-  void addStudent(Student* s);
+  void addStudent(Student s);
+  void returnSize();
 
 private:
+  StudentQueue();
   static StudentQueue* firstInstance;
   Queue<Student> stuQ;
 };
+
+
+
+
+
 
 #endif
