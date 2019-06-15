@@ -26,4 +26,8 @@ void StudentQueue::addStudent(Student s) {
 Student StudentQueue::removeStudent(){
   return stuQ.remove();
 }
+
+void StudentQueue::printQueue(){
+  stuQ.printAll();
+}
 #endif

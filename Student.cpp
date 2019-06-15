@@ -13,5 +13,11 @@ Student::Student(int a, int t){
 	waitTime = 0; // time spent waiting for an open window
 }
 
+//overloading operator
+ostream& operator<<(ostream& os, const Student& stu) {
+	os << stu.arvTime << " - " << stu.reqTime << " - " << stu.waitTime;
+	return os;
+}
+
 Student::~Student(){}
 #endif

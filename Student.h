@@ -15,6 +15,7 @@ class Student{
 		Student(int a, int t);
 		~Student();
 
+		friend ostream& operator<<(ostream& os, const Student& stu);
 };
 
 

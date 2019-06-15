@@ -44,6 +44,5 @@ void fileReader::fillQueue(const char* fileName) {
       }
     }
   }
-  sQ->returnSize();
 }
 #endif

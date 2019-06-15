@@ -14,7 +14,8 @@ public:
   Student removeStudent();
   void addStudent(Student s);
   void returnSize();
-
+  void printQueue();
+  
 private:
   StudentQueue();
   static StudentQueue* firstInstance;
