@@ -9,7 +9,7 @@ fileReader::fileReader(){
   line = "";
   time = 0;
   sQ = StudentQueue::getInstance();
-  wQ = WindowQueue::getInstance();
+  wL = WindowList::getInstance();
 
 }
 
@@ -26,7 +26,7 @@ void fileReader::fillQueue(const char* fileName) {
 
     for(int i = 0 ; i < line.length(); ++i) {
       w = Window();
-      wQ->addWindow(w);
+      wL->addWindow(w);
     }
 
     while(getline(myFile, line)) {

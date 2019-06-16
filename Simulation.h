@@ -2,7 +2,7 @@
 #define SIMULATION_H
 
 #include "StudentQueue.h"
-#include "WindowQueue.h"
+#include "WindowList.h"
 using namespace std;
 
 class Simulation {
@@ -13,10 +13,10 @@ public:
 private:
   int count;
   StudentQueue* sQ;
-  WindowQueue* wQ;
+  WindowList* wL;
   Student s;
   Window w;
-  
+
 };
 
 #endif

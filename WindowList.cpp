@@ -1,32 +1,32 @@
-#ifndef WINDOWQUEUE_CPP
-#define WINDOWQUEUE_CPP
+#ifndef WINDOWLIST_CPP
+#define WINDOWLIST_CPP
 
-#include "WindowQueue.h"
+#include "WindowList.h"
 
 using namespace std;
 
-WindowQueue * WindowQueue::windowInstance = 0;
+WindowList * WindowList::windowInstance = 0;
 
-WindowQueue::WindowQueue() {
+WindowList::WindowList() {
 }
 
-WindowQueue* WindowQueue::getInstance() {
+WindowList* WindowList::getInstance() {
   if(windowInstance == 0){
-    windowInstance = new WindowQueue();
+    windowInstance = new WindowList();
   }
   return windowInstance;
 }
 
-void WindowQueue::addWindow(Window w) {
-  winQ.insert(w);
+void WindowList::addWindow(Window w) {
+  winL.insertBack(w);
 }
 
-Window WindowQueue::removeWindow(){
-  return winQ.remove();
+Window WindowList::removeWindow(){
+  return winL.removeFront();
 }
 
-int WindowQueue::returnSize() {
-  return winQ.getSize();
+int WindowList::returnSize() {
+  return winL.size;
 }
 
 #endif

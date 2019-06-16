@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-#include "WindowQueue.h"
+#include "WindowList.h"
 #include "StudentQueue.h"
 
 
@@ -12,7 +12,7 @@ using namespace std;
 
 class fileReader {
 private:
-  WindowQueue* wQ;
+  WindowList* wL;
   StudentQueue* sQ;
   Window w;
   Student s;

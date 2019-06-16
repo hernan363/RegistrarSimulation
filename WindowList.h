@@ -1,18 +1,18 @@
-#ifndef WINDOWQUEUE_H
-#define WINDOWQUEUE_H
+#ifndef WINDOWLIST_H
+#define WINDOWLIST_H
 
-#include "Queue.h"
+#include "DoublyLinkedList.h"
 #include "Window.h"
-class WindowQueue {
+class WindowList {
 public:
-  static WindowQueue* getInstance();
+  static WindowList* getInstance();
   void addWindow(Window w);
   Window removeWindow();
-  WindowQueue();
+  WindowList();
   int returnSize();
 private:
-  Queue<Window> winQ;
-  static WindowQueue* windowInstance;
+  DoublyLinkedList<Window> winL;
+  static WindowList* windowInstance;
 
 };
 

@@ -6,7 +6,7 @@
 //constructor
 Simulation::Simulation() {
   sQ = StudentQueue::getInstance();
-  wQ = WindowQueue::getInstance();
+  wL = WindowList::getInstance();
   count = 0;
 }
 
@@ -15,9 +15,9 @@ Simulation::~Simulation(){}
 
 void Simulation::run() {
   while(sQ->peekFront().arvTime <= count) {
-    s = sQ.removeStudent();
-    w = wQ.removeWindow();
-    
+    s = sQ->removeStudent();
+    w = wL->removeWindow();
+
   }
 }
 
