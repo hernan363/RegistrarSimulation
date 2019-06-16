@@ -14,12 +14,15 @@ public:
 
   //WINDOW STATISTICS
   float meanWinIdleTime;
-  int longestStuWaitTime;
+  int longestWinWaitTime;
   int numWinWaitOverFive;
+
+  static Statistics* getInstance();
 
   Statistics();
   ~Statistics();
 private:
+  static Statistics* statsInstance;
 
 };
 
