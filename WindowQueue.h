@@ -9,6 +9,7 @@ public:
   void addWindow(Window w);
   Window removeWindow();
   WindowQueue();
+  int returnSize();
 private:
   Queue<Window> winQ;
   static WindowQueue* windowInstance;

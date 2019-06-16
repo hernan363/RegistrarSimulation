@@ -15,7 +15,7 @@ public:
   void addStudent(Student s);
   void returnSize();
   void printQueue();
-  
+  Student peekFront();
 private:
   StudentQueue();
   static StudentQueue* firstInstance;

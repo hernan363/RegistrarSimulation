@@ -25,4 +25,8 @@ Window WindowQueue::removeWindow(){
   return winQ.remove();
 }
 
+int WindowQueue::returnSize() {
+  return winQ.getSize();
+}
+
 #endif

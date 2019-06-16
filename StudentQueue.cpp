@@ -30,4 +30,8 @@ Student StudentQueue::removeStudent(){
 void StudentQueue::printQueue(){
   stuQ.printAll();
 }
+
+Student StudentQueue::peekFront() {
+  return stuQ.peek();
+}
 #endif

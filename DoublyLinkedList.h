@@ -44,12 +44,10 @@ DoublyLinkedList<E>::~DoublyLinkedList(){}
 template <typename E>
 void DoublyLinkedList<E>::insertFront(E data){
 
-
 	ListNode<E> *node = new ListNode<E>(data);
 	if(size==0){
 		back = node;
-	}
-	else{
+	} else {
 		node->next = front;
 		front->prev = node;
 	}
@@ -65,12 +63,9 @@ void DoublyLinkedList<E>::insertBack(E data){
 
 	if(size == 0){
 		front = node;
-
-	}
-	else{
+	} else {
 		back->next = node;
 		node->prev = back;
-
 	}
 	back = node;
 	size ++;
@@ -86,8 +81,7 @@ E DoublyLinkedList<E>::removeFront(){
 
 	if(front->next == NULL){
 		back = NULL;
-	}
-	else{
+	} else {
 		front->next->prev = NULL;
 	}
 
@@ -118,13 +112,10 @@ E DoublyLinkedList<E>::deletePos(E key){
 
 	if(current == front){
 		front = current -> next;
-	}
-	else if(current == back){
+	} else if (current == back){
 		back = current->prev;
 		back-> next= NULL;
-	}
-
-	else{
+	} else {
 		current->prev->next = current -> next;
 		current->next->prev = current -> prev;
 	}
