@@ -17,6 +17,21 @@ WindowList* WindowList::getInstance() {
   return windowInstance;
 }
 
+bool WindowList::findOpenWindow() {
+  cursor = winL.front;
+  while(!isFull) {
+    if(cursor->data.open == true) {
+      cursor->data.open = false;
+      return true;
+    } else if (cursor->data.open == false) {
+      cursor = cursor->prev;
+    } else {
+      isFull = true;
+    }
+  }
+  return false;
+}
+
 void WindowList::addWindow(Window w) {
   winL.insertBack(w);
 }
