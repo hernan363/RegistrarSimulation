@@ -7,13 +7,12 @@ class Statistics{
 public:
 
   //STUDENT STATISTICS
-  float meanStuWaitTime;
-  float medianStuWaitTime;
+  int totalStuWaitTime;
   int longestStuWaitTime;
   int numStuWaitOverTen;
 
   //WINDOW STATISTICS
-  float meanWinIdleTime;
+  int totalWinIdleTime;
   int longestWinWaitTime;
   int numWinWaitOverFive;
 

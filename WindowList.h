@@ -12,6 +12,7 @@ public:
   WindowList();
   int returnSize();
   bool findOpenWindow();
+  void reopenWindow();
 private:
   bool isFull = false;
   DoublyLinkedList<Window> winL;

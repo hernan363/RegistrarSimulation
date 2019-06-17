@@ -5,7 +5,17 @@
 
 Statistics* Statistics::statsInstance = 0;
 
-Statistics::Statistics() {}
+Statistics::Statistics() {
+  //STUDENT STATISTICS
+  totalStuWaitTime = 0;
+  longestStuWaitTime = 0;
+  numStuWaitOverTen = 0;
+
+  //WINDOW STATISTICS
+  totalWinIdleTime = 0;
+  longestWinWaitTime = 0;
+  numWinWaitOverFive = 0;
+}
 
 Statistics::~Statistics(){}
 
