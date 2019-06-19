@@ -13,5 +13,10 @@ Window::Window(){
 	idleForFive = false;
 }
 
+ostream& operator<<(ostream& os, const Window& win) {
+	os << win.timeTilOpen << " - " << win.open << " - " << win.idle << endl;
+	return os;
+}
+
 Window::~Window(){}
 #endif

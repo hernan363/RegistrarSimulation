@@ -8,8 +8,8 @@ StudentQueue* StudentQueue::firstInstance = 0;
 StudentQueue::StudentQueue(){
   // firstInstance = NULL;
 }
-void StudentQueue::returnSize(){
-  cout << stuQ.getSize() << endl;
+int StudentQueue::returnSize(){
+  return stuQ.getSize();
 }
 
 StudentQueue* StudentQueue::getInstance() {

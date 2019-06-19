@@ -15,7 +15,7 @@ public:
 	int size;
 	ListNode<E>* front;
 	ListNode<E>* back;
-
+	
 	DoublyLinkedList();
 	~DoublyLinkedList();
 
@@ -24,6 +24,7 @@ public:
 
 	E removeFront();
 	E deletePos(E key);
+	void printAll();
 };
 
 //.cpp
@@ -126,5 +127,12 @@ E DoublyLinkedList<E>::deletePos(E key){
 	//create temp to hgold value
 	delete current;
 	return temp;
+}
+
+template<typename E>
+void DoublyLinkedList<E>::printAll() {
+	while(size != 0){
+		cout << removeFront() << endl;
+	}
 }
 #endif

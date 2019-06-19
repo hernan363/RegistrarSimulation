@@ -10,6 +10,7 @@ fileReader::fileReader(){
   time = 0;
   sQ = StudentQueue::getInstance();
   wL = WindowList::getInstance();
+  cout << wL << endl;
 
 }
 
@@ -24,25 +25,25 @@ void fileReader::fillQueue(const char* fileName) {
   } else {
     getline(myFile, line);
 
-    for(int i = 0 ; i < line.length(); ++i) {
+    for(int i = 0 ; i < stoi(line); ++i) {
       w = Window();
       wL->addWindow(w);
+      ++wL->totalNumWindows;
+      ++wL->windowsOpen;
     }
 
     while(getline(myFile, line)) {
       time = stoi(line);
-      cout << time<< "first" << endl;
       getline(myFile,line);
       numStudents = stoi(line);
 
       for(int i = 0; i < numStudents; ++i) {
-        cout << line<< "secoend" << endl;
-
         getline(myFile, line);
         s = Student(time, stoi(line));
         sQ->addStudent(s);
       }
     }
   }
+  wL->printList();
 }
 #endif

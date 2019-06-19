@@ -8,15 +8,28 @@ Simulation::Simulation() {
   sQ = StudentQueue::getInstance();
   wL = WindowList::getInstance();
   stats = Statistics::getInstance();
-  count = 0;
+  count = 1;
 }
 
 //destructor
 Simulation::~Simulation(){}
 
+void Simulation::simulate() {
+  while((sQ->returnSize() != 0) || (wL->windowsOpen != wL->totalNumWindows)) {
+    run();
+    cout <<sQ->returnSize() << endl;
+  }
+  runWindowStatistics();
+}
+
 void Simulation::run() {
+  cout << sQ->peekFront().arvTime<< endl;
+
   while(sQ->peekFront().arvTime <= count) {
+    cout << "Hello" << endl;
+
     if(wL->findOpenWindow() == true) {
+      cout << "Hello" << endl;
       s = sQ->removeStudent();
       w = wL->cursor->data;
       ///////////////Window Statistics /////////////
@@ -45,5 +58,9 @@ void Simulation::run() {
   }
   ++count;
   wL->reopenWindow();
+}
+
+void Simulation::runWindowStatistics() {
+  wL->winStatistics();
 }
 #endif

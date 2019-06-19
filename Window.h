@@ -13,6 +13,8 @@ public:
 	bool open;  // if the window is open
 	bool idleForFive; // if the window has been idle for more than 5 minutes
 
+	friend ostream& operator<<(ostream& os, const Window& win);
+
 	Window();
 	~Window();
 };

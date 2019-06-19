@@ -12,7 +12,7 @@ public:
   int numStuWaitOverTen;
 
   //WINDOW STATISTICS
-  int totalWinIdleTime;
+  int avgWinIdleTime;
   int longestWinWaitTime;
   int numWinWaitOverFive;
 

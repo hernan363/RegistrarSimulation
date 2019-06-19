@@ -11,7 +11,7 @@ class Simulation {
 public:
   Simulation();
   ~Simulation();
-  void run();
+  void simulate();
 private:
   int count;
   Statistics* stats;
@@ -19,6 +19,9 @@ private:
   WindowList* wL;
   Student s;
   Window w;
+
+  void run();
+  void runWindowStatistics();
 };
 
 #endif

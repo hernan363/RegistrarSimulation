@@ -13,7 +13,7 @@ public:
   static StudentQueue* getInstance();
   Student removeStudent();
   void addStudent(Student s);
-  void returnSize();
+  int returnSize();
   void printQueue();
   Student peekFront();
 private:

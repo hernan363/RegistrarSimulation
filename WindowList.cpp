@@ -7,7 +7,15 @@ using namespace std;
 
 WindowList * WindowList::windowInstance = 0;
 
+void WindowList::printList() {
+  winL.printAll();
+}
+
 WindowList::WindowList() {
+  stats = Statistics::getInstance();
+  totalNumWindows = 0;
+  windowsOpen = 0;
+  // cursor = new ListNode<Window>();
 }
 
 WindowList* WindowList::getInstance() {
@@ -18,15 +26,32 @@ WindowList* WindowList::getInstance() {
 }
 
 bool WindowList::findOpenWindow() {
+  cout << "HERE" << &winL << endl;
+  printList();
+
+  int i = 0;
+  int *j;
+  cout << j << endl;
+  cout << &j << endl;
+  j = &i;
+  cout << &i << endl;
+  cout << j << endl;
+  cout << endl;
+  cout << &cursor << endl;
+  cout << cursor << endl;
+cout <<winL.front << endl;
   cursor = winL.front;
-  while(!isFull) {
+  printf("%p\n", (void *) &cursor);
+  cout << &winL.front << endl;
+  cout << cursor << endl;
+  while(windowsOpen != 0) {
+    cout << "made it" << endl;
     if(cursor->data.open == true) {
       cursor->data.open = false;
+      --windowsOpen;
       return true;
     } else if (cursor->data.open == false) {
       cursor = cursor->prev;
-    } else {
-      isFull = true;
     }
   }
   return false;
@@ -39,6 +64,7 @@ void WindowList::reopenWindow(){
     //reopen window if not decrement the timeTileOpen
     if(cursor->data.timeTilOpen == 0) {
       cursor->data.open = true;
+      ++windowsOpen;
     } else {
       --cursor->data.timeTilOpen;
     }
@@ -50,6 +76,23 @@ void WindowList::reopenWindow(){
     //next node
     cursor = cursor->prev;
   }
+}
+
+void WindowList::winStatistics() {
+  cursor = winL.front;
+  while(true) {
+    if(cursor->data.idleForFive == true) {
+      ++stats->numWinWaitOverFive;
+    }
+    if(cursor->data.totalIdle > stats->longestWinWaitTime) {
+      stats->longestWinWaitTime = cursor->data.totalIdle;
+    }
+    //adding to the wait time (we will divide in the next line)
+    stats->avgWinIdleTime += cursor->data.totalIdle;
+
+  }
+  //dividing the average wait time
+  stats->avgWinIdleTime /= totalNumWindows;
 }
 
 void WindowList::addWindow(Window w) {

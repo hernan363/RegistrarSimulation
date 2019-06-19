@@ -12,7 +12,7 @@ Statistics::Statistics() {
   numStuWaitOverTen = 0;
 
   //WINDOW STATISTICS
-  totalWinIdleTime = 0;
+  avgWinIdleTime = 0;
   longestWinWaitTime = 0;
   numWinWaitOverFive = 0;
 }
