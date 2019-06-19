@@ -31,15 +31,15 @@ void Simulation::run() {
     if(wL->findOpenWindow() == true) {
       cout << "Hello" << endl;
       s = sQ->removeStudent();
-      w = wL->cursor->data;
+      w = wL->cursor;
       ///////////////Window Statistics /////////////
-      w.totalIdle += count - w.timeTilOpen;
+      w->data.totalIdle += count - w->data.timeTilOpen;
 
-      if((count-w.timeTilOpen) > 5) {
-        w.idleForFive = true;
+      if((count-w->data.timeTilOpen) > 5) {
+        w->data.idleForFive = true;
       }
 
-      w.timeTilOpen = count + s.reqTime;
+      w->data.timeTilOpen = count + s.reqTime;
 
       ///////Student Statistics////////////
       stats->totalStuWaitTime += s.waitTime;

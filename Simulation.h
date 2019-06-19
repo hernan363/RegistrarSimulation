@@ -18,7 +18,8 @@ private:
   StudentQueue* sQ;
   WindowList* wL;
   Student s;
-  Window w;
+  // Window* w;
+  ListNode<Window>* w;
 
   void run();
   void runWindowStatistics();

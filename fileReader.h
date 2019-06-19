@@ -12,7 +12,7 @@ using namespace std;
 
 class fileReader {
 private:
-  WindowList* wL;
+  // WindowList* wL;
   StudentQueue* sQ;
   Window w;
   Student s;
@@ -25,6 +25,8 @@ private:
   Student createStudent(int arrivalTime, int requiredTime);
   Window createWindow();
 public:
+  WindowList* wL;
+
   void fillQueue(const char* fileName);
 
   fileReader();

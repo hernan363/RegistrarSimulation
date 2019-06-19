@@ -26,27 +26,12 @@ WindowList* WindowList::getInstance() {
 }
 
 bool WindowList::findOpenWindow() {
-  cout << "HERE" << &winL << endl;
-  printList();
-
-  int i = 0;
-  int *j;
-  cout << j << endl;
-  cout << &j << endl;
-  j = &i;
-  cout << &i << endl;
-  cout << j << endl;
-  cout << endl;
-  cout << &cursor << endl;
-  cout << cursor << endl;
-cout <<winL.front << endl;
   cursor = winL.front;
-  printf("%p\n", (void *) &cursor);
-  cout << &winL.front << endl;
-  cout << cursor << endl;
+
   while(windowsOpen != 0) {
     cout << "made it" << endl;
     if(cursor->data.open == true) {
+      cout << cursor->data.open << ": OPEN DATA" << endl;
       cursor->data.open = false;
       --windowsOpen;
       return true;

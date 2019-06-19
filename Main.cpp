@@ -8,6 +8,8 @@ int main(int argc, char const *argv[]) {
   Simulation s;
 
   r.fillQueue(argv[1]);
+  // r.wL->printList();
+  cout << "singleton address wL " << r.wL << endl;
   s.simulate();
 
   return 0;

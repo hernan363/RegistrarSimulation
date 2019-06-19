@@ -10,8 +10,6 @@ fileReader::fileReader(){
   time = 0;
   sQ = StudentQueue::getInstance();
   wL = WindowList::getInstance();
-  cout << wL << endl;
-
 }
 
 fileReader::~fileReader(){}
@@ -44,6 +42,6 @@ void fileReader::fillQueue(const char* fileName) {
       }
     }
   }
-  wL->printList();
+  // wL->printList();
 }
 #endif
