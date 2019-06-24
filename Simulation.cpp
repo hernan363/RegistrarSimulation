@@ -15,21 +15,24 @@ Simulation::Simulation() {
 Simulation::~Simulation(){}
 
 void Simulation::simulate() {
-  while((sQ->returnSize() != 0) || (wL->windowsOpen != wL->totalNumWindows)) {
-    run();
-    cout <<sQ->returnSize() << endl;
+  while(true) {
+    if((sQ->returnSize() != 0)) {
+      run();
+    } else {
+      if(wL->windowsOpen == wL->totalNumWindows) {
+        break;
+      }
+    }
+    wL->reopenWindow();
+    ++count;
   }
   runWindowStatistics();
+  // stats->printStats();
 }
 
 void Simulation::run() {
-  cout << sQ->peekFront().arvTime<< endl;
-
-  while(sQ->peekFront().arvTime <= count) {
-    cout << "Hello" << endl;
-
+  while(sQ->returnSize() != 0 && sQ->peekFront().arvTime <= count) {
     if(wL->findOpenWindow() == true) {
-      cout << "Hello" << endl;
       s = sQ->removeStudent();
       w = wL->cursor;
       ///////////////Window Statistics /////////////
@@ -51,13 +54,10 @@ void Simulation::run() {
       if(s.waitTime > 10) {
         ++stats->numStuWaitOverTen;
       }
-
     } else {
       break;
     }
   }
-  ++count;
-  wL->reopenWindow();
 }
 
 void Simulation::runWindowStatistics() {

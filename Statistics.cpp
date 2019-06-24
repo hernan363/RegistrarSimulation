@@ -26,4 +26,8 @@ Statistics* Statistics::getInstance() {
   return statsInstance;
 }
 
+void Statistics::printStats() {
+
+}
+
 #endif

@@ -18,6 +18,8 @@ public:
 
   static Statistics* getInstance();
 
+  void printStats();
+
   Statistics();
   ~Statistics();
 private:

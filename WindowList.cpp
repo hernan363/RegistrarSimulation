@@ -29,14 +29,14 @@ bool WindowList::findOpenWindow() {
   cursor = winL.front;
 
   while(windowsOpen != 0) {
-    cout << "made it" << endl;
     if(cursor->data.open == true) {
-      cout << cursor->data.open << ": OPEN DATA" << endl;
       cursor->data.open = false;
       --windowsOpen;
       return true;
-    } else if (cursor->data.open == false) {
-      cursor = cursor->prev;
+    } else if (cursor->next == NULL) {
+      break;
+    } else {
+      cursor = cursor->next;
     }
   }
   return false;
@@ -59,7 +59,11 @@ void WindowList::reopenWindow(){
       break;
     }
     //next node
-    cursor = cursor->prev;
+    if(cursor->next != NULL) {
+      cursor = cursor->next;
+    } else {
+      break;
+    }
   }
 }
 
@@ -74,10 +78,17 @@ void WindowList::winStatistics() {
     }
     //adding to the wait time (we will divide in the next line)
     stats->avgWinIdleTime += cursor->data.totalIdle;
+    if(cursor->next != NULL) {
+      cursor = cursor->next;
+    } else {
+      break;
+    }
 
   }
   //dividing the average wait time
   stats->avgWinIdleTime /= totalNumWindows;
+
+
 }
 
 void WindowList::addWindow(Window w) {
