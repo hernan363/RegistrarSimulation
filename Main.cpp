@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]) {
   cout << "singleton address wL " << r.wL << endl;
   s.simulate();
 
-  cout << "Mean student wait time: " << stats->totalStuWaitTime << endl;
+  cout << "Mean student wait time: " << stats->totalStuWaitTime/stats->numStudents << endl;
   cout << "Median student wait time:" << stats->totalStuWaitTime << endl;
   cout << "Longest student wait time:" << stats->longestStuWaitTime << endl;
   cout << "Number of students who waited over ten minutes: " << stats->numStuWaitOverTen << endl;

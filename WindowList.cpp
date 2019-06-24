@@ -15,7 +15,6 @@ WindowList::WindowList() {
   stats = Statistics::getInstance();
   totalNumWindows = 0;
   windowsOpen = 0;
-  // cursor = new ListNode<Window>();
 }
 
 WindowList* WindowList::getInstance() {
@@ -87,8 +86,6 @@ void WindowList::winStatistics() {
   }
   //dividing the average wait time
   stats->avgWinIdleTime /= totalNumWindows;
-
-
 }
 
 void WindowList::addWindow(Window w) {

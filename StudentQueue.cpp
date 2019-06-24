@@ -19,6 +19,14 @@ StudentQueue* StudentQueue::getInstance() {
   return firstInstance;
 }
 
+void StudentQueue::incrementStuWait(){
+  cursor = stuQ.D.front;
+  while(cursor != NULL) {
+    ++cursor->data.waitTime;
+    cursor = cursor->next;
+  }
+}
+
 void StudentQueue::addStudent(Student s) {
   stuQ.insert(s);
 }

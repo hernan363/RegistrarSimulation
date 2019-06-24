@@ -16,7 +16,9 @@ public:
   int returnSize();
   void printQueue();
   Student peekFront();
+  void incrementStuWait();
 private:
+  ListNode<Student>* cursor;
   StudentQueue();
   static StudentQueue* firstInstance;
   Queue<Student> stuQ;

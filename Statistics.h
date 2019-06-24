@@ -16,6 +16,8 @@ public:
   int longestWinWaitTime;
   int numWinWaitOverFive;
 
+  int numStudents;
+
   static Statistics* getInstance();
 
   void printStats();

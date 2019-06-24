@@ -10,6 +10,7 @@ Statistics::Statistics() {
   totalStuWaitTime = 0;
   longestStuWaitTime = 0;
   numStuWaitOverTen = 0;
+  numStudents = 0;
 
   //WINDOW STATISTICS
   avgWinIdleTime = 0;

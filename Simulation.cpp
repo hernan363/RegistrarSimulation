@@ -15,6 +15,7 @@ Simulation::Simulation() {
 Simulation::~Simulation(){}
 
 void Simulation::simulate() {
+  stats->numStudents = sQ->returnSize();
   while(true) {
     if((sQ->returnSize() != 0)) {
       run();
@@ -24,6 +25,7 @@ void Simulation::simulate() {
       }
     }
     wL->reopenWindow();
+    sQ->incrementStuWait();
     ++count;
   }
   runWindowStatistics();
@@ -45,7 +47,7 @@ void Simulation::run() {
       w->data.timeTilOpen = count + s.reqTime;
 
       ///////Student Statistics////////////
-      stats->totalStuWaitTime += s.waitTime;
+      stats->totalStuWaitTime += s.waitTime-s.arvTime;
 
       if(s.waitTime > stats->longestStuWaitTime) {
         stats->longestStuWaitTime = s.waitTime;
