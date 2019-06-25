@@ -9,13 +9,12 @@ fileReader::fileReader(){
   line = "";
   time = 0;
   sQ = StudentQueue::getInstance();
-  wQ = WindowList::getInstance();
+  wQ = WindowLists::getInstance();
 }
 
 fileReader::~fileReader(){}
 
 void fileReader::fillQueue(const char* fileName) {
-  // myFile = (fileName);
   myFile.open(fileName);
 
   if(!myFile.is_open()) {
@@ -40,6 +39,5 @@ void fileReader::fillQueue(const char* fileName) {
       }
     }
   }
-  // wQ->printList();
 }
 #endif

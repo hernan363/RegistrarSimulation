@@ -5,29 +5,33 @@
 #include "Window.h"
 #include "Statistics.h"
 
-class WindowList {
+#include <iostream>
+
+class WindowLists {
 public:
   ListNode<Window>* cursor;
   // Window* cursor;
 
-  static WindowList* getInstance();
+  static WindowLists* getInstance();
   void addWindow(Window w);
   Window removeWindow();
-  WindowList();
+  WindowLists();
+  ~WindowLists();
+
   int returnSize();
   bool findOpenWindow();
   void reopenWindow();
   void winStatistics();
-  void printList();
+  // void printList();
   Queue<Window> winQ;
+  DoublyLinkedList<Window> winL;
   int totalNumWindows;
-  void reopenWindow();
 
 private:
   Window w;
   Statistics* stats;
 
-  static WindowList* windowInstance;
+  static WindowLists* windowInstance;
 
 };
 

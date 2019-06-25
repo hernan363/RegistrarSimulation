@@ -24,7 +24,7 @@ public:
 
 	DoublyLinkedList<E> D;
 
-	void printAll();
+	// void printAll();
 
 
 };
@@ -70,11 +70,11 @@ int Queue<E>::isEmpty(){
 	return (D.size == 0);
 }
 
-//prints the whole queue
-template<typename E>
-void Queue<E>::printAll() {
-	while(getSize() != 0){
-		cout << remove() << endl;
-	}
-}
+// //prints the whole queue
+// template<typename E>
+// void Queue<E>::printAll() {
+// 	while(getSize() != 0){
+// 		cout << remove() << endl;
+// 	}
+// }
 #endif

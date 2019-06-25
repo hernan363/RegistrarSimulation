@@ -4,9 +4,8 @@
 #include <fstream>
 #include <string>
 
-#include "WindowList.h"
+#include "WindowLists.h"
 #include "StudentQueue.h"
-
 
 using namespace std;
 
@@ -25,7 +24,7 @@ private:
   Student createStudent(int arrivalTime, int requiredTime);
   Window createWindow();
 public:
-  WindowList* wQ;
+  WindowLists* wQ;
 
   void fillQueue(const char* fileName);
 

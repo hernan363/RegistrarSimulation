@@ -4,9 +4,7 @@
 #include "StudentQueue.h"
 StudentQueue* StudentQueue::firstInstance = 0;
 
-
 StudentQueue::StudentQueue(){
-  // firstInstance = NULL;
 }
 int StudentQueue::returnSize(){
   return stuQ.getSize();
@@ -35,9 +33,9 @@ Student StudentQueue::removeStudent(){
   return stuQ.remove();
 }
 
-void StudentQueue::printQueue(){
-  stuQ.printAll();
-}
+// void StudentQueue::printQueue(){
+//   stuQ.printAll();
+// }
 
 Student StudentQueue::peekFront() {
   return stuQ.peek();

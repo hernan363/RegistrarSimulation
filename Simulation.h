@@ -2,7 +2,7 @@
 #define SIMULATION_H
 
 #include "StudentQueue.h"
-#include "WindowList.h"
+#include "WindowLists.h"
 #include "Statistics.h"
 
 using namespace std;
@@ -16,10 +16,10 @@ private:
   int count;
   Statistics* stats;
   StudentQueue* sQ;
-  WindowList* wQ;
+  WindowLists* wQ;
   Student s;
-  // Window* w;
-  ListNode<Window>* w;
+  Window w;
+  // ListNode<Window* w;
 
   void run();
   void runWindowStatistics();

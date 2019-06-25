@@ -6,7 +6,7 @@
 //constructor
 Simulation::Simulation() {
   sQ = StudentQueue::getInstance();
-  wQ = WindowList::getInstance();
+  wQ = WindowLists::getInstance();
   stats = Statistics::getInstance();
   count = 1;
 }
@@ -16,6 +16,8 @@ Simulation::~Simulation(){}
 
 void Simulation::simulate() {
   stats->numStudents = sQ->returnSize();
+  wQ->totalNumWindows = wQ->winQ.getSize();
+  cout << wQ->totalNumWindows << endl;
   while(true) {
     if((sQ->returnSize() != 0)) {
       run();
@@ -36,15 +38,15 @@ void Simulation::run() {
   while(sQ->returnSize() != 0 && sQ->peekFront().arvTime <= count) {
     if(wQ->returnSize() != 0) {
       s = sQ->removeStudent();
-      w = wQ->cursor;
+      w = wQ->removeWindow();
       ///////////////Window Statistics /////////////
-      w->data.totalIdle += count - w->data.timeTilOpen;
+      w.totalIdle += count - w.timeTilOpen;
 
-      if((count-w->data.timeTilOpen) > 5) {
-        w->data.idleForFive = true;
+      if((count-w.timeTilOpen) > 5) {
+        w.idleForFive = true;
       }
 
-      w->data.timeTilOpen = count + s.reqTime;
+      w.timeTilOpen = count + s.reqTime;
 
       ///////Student Statistics////////////
       stats->totalStuWaitTime += s.waitTime-s.arvTime;
