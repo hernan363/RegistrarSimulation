@@ -16,7 +16,7 @@ private:
   int count;
   Statistics* stats;
   StudentQueue* sQ;
-  WindowList* wL;
+  WindowList* wQ;
   Student s;
   // Window* w;
   ListNode<Window>* w;

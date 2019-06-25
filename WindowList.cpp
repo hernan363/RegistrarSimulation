@@ -8,13 +8,12 @@ using namespace std;
 WindowList * WindowList::windowInstance = 0;
 
 void WindowList::printList() {
-  winL.printAll();
+  winQ.printAll();
 }
 
 WindowList::WindowList() {
   stats = Statistics::getInstance();
   totalNumWindows = 0;
-  windowsOpen = 0;
 }
 
 WindowList* WindowList::getInstance() {
@@ -41,33 +40,33 @@ bool WindowList::findOpenWindow() {
   return false;
 }
 
-//reopens and decrements the timeTilOpen;
-void WindowList::reopenWindow(){
-  cursor = winL.front;
-  while(true) {
-    //reopen window if not decrement the timeTileOpen
-    if(cursor->data.timeTilOpen == 0) {
-      cursor->data.open = true;
-      ++windowsOpen;
-    } else {
-      --cursor->data.timeTilOpen;
-    }
-
-    //exit loop
-    if(cursor == winL.back) {
-      break;
-    }
-    //next node
-    if(cursor->next != NULL) {
-      cursor = cursor->next;
-    } else {
-      break;
-    }
-  }
-}
+// //reopens and decrements the timeTilOpen;
+// void WindowList::reopenWindow(){
+//   cursor = winL.front;
+//   while(true) {
+//     //reopen window if not decrement the timeTileOpen
+//     if(cursor->data.timeTilOpen == 0) {
+//       cursor->data.open = true;
+//       ++windowsOpen;
+//     } else {
+//       --cursor->data.timeTilOpen;
+//     }
+//
+//     //exit loop
+//     if(cursor == winL.back) {
+//       break;
+//     }
+//     //next node
+//     if(cursor->next != NULL) {
+//       cursor = cursor->next;
+//     } else {
+//       break;
+//     }
+//   }
+// }
 
 void WindowList::winStatistics() {
-  cursor = winL.front;
+  cursor = winQ.D.front;
   while(true) {
     if(cursor->data.idleForFive == true) {
       ++stats->numWinWaitOverFive;
@@ -89,15 +88,15 @@ void WindowList::winStatistics() {
 }
 
 void WindowList::addWindow(Window w) {
-  winL.insertBack(w);
+  winQ.insert(w);
 }
 
 Window WindowList::removeWindow(){
-  return winL.removeFront();
+  return winQ.remove();
 }
 
 int WindowList::returnSize() {
-  return winL.size;
+  return winQ.getSize();
 }
 
 #endif

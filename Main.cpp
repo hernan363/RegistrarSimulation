@@ -10,7 +10,7 @@ int main(int argc, char const *argv[]) {
 
   r.fillQueue(argv[1]);
   // r.wL->printList();
-  cout << "singleton address wL " << r.wL << endl;
+  cout << "singleton address wL " << r.wQ << endl;
   s.simulate();
 
   cout << "Mean student wait time: " << stats->totalStuWaitTime/stats->numStudents << endl;

@@ -9,7 +9,7 @@ fileReader::fileReader(){
   line = "";
   time = 0;
   sQ = StudentQueue::getInstance();
-  wL = WindowList::getInstance();
+  wQ = WindowList::getInstance();
 }
 
 fileReader::~fileReader(){}
@@ -25,9 +25,7 @@ void fileReader::fillQueue(const char* fileName) {
 
     for(int i = 0 ; i < stoi(line); ++i) {
       w = Window();
-      wL->addWindow(w);
-      ++wL->totalNumWindows;
-      ++wL->windowsOpen;
+      wQ->addWindow(w);
     }
 
     while(getline(myFile, line)) {
@@ -42,6 +40,6 @@ void fileReader::fillQueue(const char* fileName) {
       }
     }
   }
-  // wL->printList();
+  // wQ->printList();
 }
 #endif

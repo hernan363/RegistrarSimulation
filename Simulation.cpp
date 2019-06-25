@@ -6,7 +6,7 @@
 //constructor
 Simulation::Simulation() {
   sQ = StudentQueue::getInstance();
-  wL = WindowList::getInstance();
+  wQ = WindowList::getInstance();
   stats = Statistics::getInstance();
   count = 1;
 }
@@ -20,11 +20,11 @@ void Simulation::simulate() {
     if((sQ->returnSize() != 0)) {
       run();
     } else {
-      if(wL->windowsOpen == wL->totalNumWindows) {
+      if(wQ->returnSize() != wQ->totalNumWindows) {
         break;
       }
     }
-    wL->reopenWindow();
+    wQ->reopenWindow();
     sQ->incrementStuWait();
     ++count;
   }
@@ -34,9 +34,9 @@ void Simulation::simulate() {
 
 void Simulation::run() {
   while(sQ->returnSize() != 0 && sQ->peekFront().arvTime <= count) {
-    if(wL->findOpenWindow() == true) {
+    if(wQ->returnSize() != 0) {
       s = sQ->removeStudent();
-      w = wL->cursor;
+      w = wQ->cursor;
       ///////////////Window Statistics /////////////
       w->data.totalIdle += count - w->data.timeTilOpen;
 
@@ -63,6 +63,6 @@ void Simulation::run() {
 }
 
 void Simulation::runWindowStatistics() {
-  wL->winStatistics();
+  wQ->winStatistics();
 }
 #endif

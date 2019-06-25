@@ -1,7 +1,7 @@
 #ifndef WINDOWLIST_H
 #define WINDOWLIST_H
 
-#include "DoublyLinkedList.h"
+#include "Queue.h"
 #include "Window.h"
 #include "Statistics.h"
 
@@ -18,12 +18,10 @@ public:
   bool findOpenWindow();
   void reopenWindow();
   void winStatistics();
-  int windowsOpen;
-  int totalNumWindows;
   void printList();
-  DoublyLinkedList<Window> winL;
-
-
+  Queue<Window> winQ;
+  int totalNumWindows;
+  void reopenWindow();
 
 private:
   Window w;

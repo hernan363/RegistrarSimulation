@@ -25,7 +25,7 @@ private:
   Student createStudent(int arrivalTime, int requiredTime);
   Window createWindow();
 public:
-  WindowList* wL;
+  WindowList* wQ;
 
   void fillQueue(const char* fileName);
 
