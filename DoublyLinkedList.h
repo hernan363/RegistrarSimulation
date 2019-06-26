@@ -15,7 +15,7 @@ public:
 	int size;
 	ListNode<E>* front;
 	ListNode<E>* back;
-	
+
 	DoublyLinkedList();
 	~DoublyLinkedList();
 
@@ -24,7 +24,6 @@ public:
 
 	E removeFront();
 	E deletePos(E key);
-	void printAll();
 };
 
 //.cpp
@@ -102,8 +101,8 @@ E DoublyLinkedList<E>::deletePos(E key){
 	E temp;
 	ListNode<E> *current = front;
 	//search
-	while(current->data != key){
-		current= current->next;
+	while(!(current->data == key)){
+		current = current->next;
 		if(current == NULL){
 			return -1;
 		}
@@ -115,7 +114,7 @@ E DoublyLinkedList<E>::deletePos(E key){
 		front = current -> next;
 	} else if (current == back){
 		back = current->prev;
-		back-> next= NULL;
+		back->next = NULL;
 	} else {
 		current->prev->next = current -> next;
 		current->next->prev = current -> prev;
@@ -124,15 +123,8 @@ E DoublyLinkedList<E>::deletePos(E key){
 	current->prev = NULL;
 	--size;
 
-	//create temp to hgold value
+	//create temp to hold value
 	delete current;
 	return temp;
-}
-
-template<typename E>
-void DoublyLinkedList<E>::printAll() {
-	while(size != 0){
-		cout << removeFront() << endl;
-	}
 }
 #endif

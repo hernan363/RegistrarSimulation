@@ -4,18 +4,31 @@
 #include <iostream>
 
 using namespace std;
-
 Window::Window(){
-	idle = -1;
+	id = 0;
+	idle = 0;
 	totalIdle = 0;
 	timeTilOpen = 0;
 	idleForFive = false;
 }
 
-// ostream& operator<<(ostream& os, const Window& win) {
-// 	os << win.timeTilOpen << " - " << win.open << " - " << win.idle << endl;
-// 	return os;
-// }
+Window::Window(int id){
+	this->id = id;
+	idle = 0;
+	totalIdle = 0;
+	timeTilOpen = 0;
+	idleForFive = false;
+}
+
+
+bool operator==(const Window& window, const Window& window2) {
+	cout << window.id << " : " << window2.id << endl;
+	if(window.id != window2.id) {
+		return false;
+	}
+	return true;
+}
+
 
 Window::~Window(){}
 #endif

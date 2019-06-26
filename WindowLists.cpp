@@ -7,10 +7,6 @@ using namespace std;
 
 WindowLists * WindowLists::windowInstance = 0;
 
-// void WindowLists::printList() {
-//   winQ.printAll();
-// }
-
 WindowLists::WindowLists() {
   stats = Statistics::getInstance();
   totalNumWindows = 0;
@@ -23,47 +19,32 @@ WindowLists* WindowLists::getInstance() {
   return windowInstance;
 }
 
-// bool WindowLists::findOpenWindow() {
-//   cursor = winL.front;
-//
-//   while(windowsOpen != 0) {
-//     if(cursor->data.open == true) {
-//       cursor->data.open = false;
-//       --windowsOpen;
-//       return true;
-//     } else if (cursor->next == NULL) {
-//       break;
-//     } else {
-//       cursor = cursor->next;
-//     }
-//   }
-//   return false;
-// }
-
 //reopens and decrements the timeTilOpen;
 void WindowLists::reopenWindow(){
   cursor = winL.front;
-  while(true) {
+  while(cursor != NULL) {
     //reopen window if not decrement the timeTileOpen
+    cout << cursor->data.timeTilOpen << endl;
     if(cursor->data.timeTilOpen == 0) {
-      winQ.insert(cursor->data);
+
+      w = cursor->data;
+      cursor = cursor->next;
+      cout << "ID: " << w.id << endl;
+      winL.deletePos(w);
+      winQ.insert(w);
+      cout << "one time" << endl;
     } else {
       --cursor->data.timeTilOpen;
+      cursor = cursor->next;
+
     }
 
-    //next node
-    if(cursor->next != NULL) {
-      cursor = cursor->next;
-    } else {
-      break;
-    }
   }
 }
 
 void WindowLists::winStatistics() {
   cursor = winQ.D.front;
-  while(true) {
-    cout << winQ.getSize() << endl;
+  while(cursor != NULL) {
     if(cursor->data.idleForFive == true) {
       ++stats->numWinWaitOverFive;
     }
@@ -72,11 +53,7 @@ void WindowLists::winStatistics() {
     }
     //adding to the wait time (we will divide in the next line)
     stats->avgWinIdleTime += cursor->data.totalIdle;
-    if(cursor->next != NULL) {
-      cursor = cursor->next;
-    } else {
-      break;
-    }
+    cursor = cursor->next;
 
   }
   //dividing the average wait time
@@ -87,15 +64,28 @@ void WindowLists::addWindow(Window w) {
   winQ.insert(w);
 }
 
-Window WindowLists::removeWindow(){
+Window WindowLists::removeWindow(int stuTimeNeeded){
 
   w = winQ.remove();
+  w.timeTilOpen = stuTimeNeeded;
   winL.insertBack(w);
   return w;
 }
 
 int WindowLists::returnSize() {
   return winQ.getSize();
+}
+
+int WindowLists::returnListSize() {
+  return winL.size;
+}
+
+void WindowLists::increaseIdleTimer() {
+  cursor = winQ.D.front;
+  while(cursor != NULL) {
+    ++cursor->data.idle;
+    cursor = cursor->next;
+  }
 }
 
 #endif

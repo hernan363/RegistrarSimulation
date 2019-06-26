@@ -23,7 +23,8 @@ void fileReader::fillQueue(const char* fileName) {
     getline(myFile, line);
 
     for(int i = 0 ; i < stoi(line); ++i) {
-      w = Window();
+      wQ->totalNumWindows++;
+      w = Window(wQ->totalNumWindows);
       wQ->addWindow(w);
     }
 

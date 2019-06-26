@@ -14,7 +14,6 @@ public:
   Student removeStudent();
   void addStudent(Student s);
   int returnSize();
-  // void printQueue();
   Student peekFront();
   void incrementStuWait();
 private:

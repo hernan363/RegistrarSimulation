@@ -17,18 +17,25 @@ Simulation::~Simulation(){}
 void Simulation::simulate() {
   stats->numStudents = sQ->returnSize();
   wQ->totalNumWindows = wQ->winQ.getSize();
-  cout << wQ->totalNumWindows << endl;
-  while(true) {
-    if((sQ->returnSize() != 0)) {
-      run();
-    } else {
-      if(wQ->returnSize() != wQ->totalNumWindows) {
-        break;
-      }
-    }
+//window size = 5
+  while(sQ->returnSize() != 0 || wQ->returnSize() != wQ->totalNumWindows) {
+    // if((sQ->returnSize() != 0)) {
+    //   run();
+    // } else {
+    //   if(wQ->returnSize() == wQ->totalNumWindows) {
+    //     break;
+    //   }
+    // }
+    run();
     wQ->reopenWindow();
     sQ->incrementStuWait();
+    wQ->increaseIdleTimer();
+    cout <<"Window Queue Size: " << wQ->returnSize() << endl;
+    cout <<"Window List Size: " << wQ->returnListSize() << endl;
+
+    cout <<"Student Size: " <<  sQ->returnSize() << endl;
     ++count;
+    cout << "ROUND: " << count << endl;
   }
   runWindowStatistics();
   // stats->printStats();
@@ -38,7 +45,7 @@ void Simulation::run() {
   while(sQ->returnSize() != 0 && sQ->peekFront().arvTime <= count) {
     if(wQ->returnSize() != 0) {
       s = sQ->removeStudent();
-      w = wQ->removeWindow();
+      w = wQ->removeWindow(s.reqTime);
       ///////////////Window Statistics /////////////
       w.totalIdle += count - w.timeTilOpen;
 
@@ -49,7 +56,7 @@ void Simulation::run() {
       w.timeTilOpen = count + s.reqTime;
 
       ///////Student Statistics////////////
-      stats->totalStuWaitTime += s.waitTime-s.arvTime;
+      stats->totalStuWaitTime += count-s.arvTime;
 
       if(s.waitTime > stats->longestStuWaitTime) {
         stats->longestStuWaitTime = s.waitTime;
