@@ -15,7 +15,7 @@ public:
 
   static WindowLists* getInstance();
   void addWindow(Window w);
-  Window removeWindow(int stuTimeNeeded);
+  void removeWindow(int stuTimeNeeded);
   WindowLists();
   ~WindowLists();
 

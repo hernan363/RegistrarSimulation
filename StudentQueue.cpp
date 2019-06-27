@@ -33,10 +33,6 @@ Student StudentQueue::removeStudent(){
   return stuQ.remove();
 }
 
-// void StudentQueue::printQueue(){
-//   stuQ.printAll();
-// }
-
 Student StudentQueue::peekFront() {
   return stuQ.peek();
 }

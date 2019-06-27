@@ -24,15 +24,15 @@ void WindowLists::reopenWindow(){
   cursor = winL.front;
   while(cursor != NULL) {
     //reopen window if not decrement the timeTileOpen
-    cout << cursor->data.timeTilOpen << endl;
+    // cout << cursor->data.timeTilOpen << endl;
     if(cursor->data.timeTilOpen == 0) {
 
       w = cursor->data;
       cursor = cursor->next;
-      cout << "ID: " << w.id << endl;
+      // cout << "ID: " << w.id << endl;
       winL.deletePos(w);
       winQ.insert(w);
-      cout << "one time" << endl;
+      // cout << "one time" << endl;
     } else {
       --cursor->data.timeTilOpen;
       cursor = cursor->next;
@@ -45,6 +45,9 @@ void WindowLists::reopenWindow(){
 void WindowLists::winStatistics() {
   cursor = winQ.D.front;
   while(cursor != NULL) {
+    cout << "ID: " << cursor->data.id << endl;
+    cout << "totalIdle: " << cursor->data.totalIdle << endl;
+    cout << "if it was idle for more than 5: " << cursor->data.idleForFive << endl;
     if(cursor->data.idleForFive == true) {
       ++stats->numWinWaitOverFive;
     }
@@ -64,12 +67,20 @@ void WindowLists::addWindow(Window w) {
   winQ.insert(w);
 }
 
-Window WindowLists::removeWindow(int stuTimeNeeded){
+void WindowLists::removeWindow(int stuTimeNeeded){
 
   w = winQ.remove();
+
   w.timeTilOpen = stuTimeNeeded;
+
+  w.totalIdle += w.idle;
+
+  if(w.idle > 5) {
+    w.idleForFive = true;
+  }
+  w.idle = 0;
+
   winL.insertBack(w);
-  return w;
 }
 
 int WindowLists::returnSize() {
@@ -84,7 +95,12 @@ void WindowLists::increaseIdleTimer() {
   cursor = winQ.D.front;
   while(cursor != NULL) {
     ++cursor->data.idle;
+    cout << "totalIdle: " << cursor->data.totalIdle << endl;
+    cout << "Idle: " << cursor->data.idle << endl;
     cursor = cursor->next;
+
+
+
   }
 }
 
