@@ -1,6 +1,8 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
+#include <iostream>
+
 using namespace std;
 
 class Statistics{
@@ -10,6 +12,7 @@ public:
   int totalStuWaitTime;
   int longestStuWaitTime;
   int numStuWaitOverTen;
+  int* stuMedian;
 
   //WINDOW STATISTICS
   int avgWinIdleTime;
@@ -21,6 +24,8 @@ public:
   static Statistics* getInstance();
 
   void printStats();
+  void setMedianArraySize();
+  void sort();
 
   Statistics();
   ~Statistics();

@@ -18,42 +18,36 @@ void Simulation::simulate() {
   cout << "ROUND: " << count << endl;
   stats->numStudents = sQ->returnSize();
   wQ->totalNumWindows = wQ->winQ.getSize();
-//window size = 5
+  stats->setMedianArraySize();
+  //window size = 5
   while(sQ->returnSize() != 0 || wQ->returnSize() != wQ->totalNumWindows) {
-    // if((sQ->returnSize() != 0)) {
-    //   run();
-    // } else {
-    //   if(wQ->returnSize() == wQ->totalNumWindows) {
-    //     break;
-    //   }
-    // }
     run();
-    // sQ->incrementStuWait();
     wQ->increaseIdleTimer();
     wQ->reopenWindow();
-
-    // cout <<"Window Queue Size: " << wQ->returnSize() << endl;
-    // cout <<"Window List Size: " << wQ->returnListSize() << endl;
-    //
-    // cout <<"Student Size: " <<  sQ->returnSize() << endl;
     ++count;
   }
+  // stats->stuMedian.sort();
   runWindowStatistics();
-  // stats->printStats();
+  stats->printStats();
 }
 
 void Simulation::run() {
   while(sQ->returnSize() != 0 && sQ->peekFront().arvTime <= count) {
     if(wQ->returnSize() != 0) {
+      //removes the student and window their respective queues
       s = sQ->removeStudent();
       wQ->removeWindow(s.reqTime);
-      ///////////////Window Statistics /////////////
-
       cout << "ID: " << w.id << " || HAS A TOTAL IDLE TIME OF: " << w.totalIdle << endl;
       cout << "Student: " << s.arvTime << " count "<< count << endl;
       ///////Student Statistics////////////
+      //adding to the median array//
+      cout <<"returning size " << sQ->returnSize() <<  endl;
+      cout << "wait time: " << s.waitTime << endl;
+
       s.waitTime = count - s.arvTime;
       stats->totalStuWaitTime += s.waitTime;
+      stats->stuMedian[sQ->returnSize()] = s.waitTime;
+
 
       if(s.waitTime > stats->longestStuWaitTime) {
         stats->longestStuWaitTime = s.waitTime;

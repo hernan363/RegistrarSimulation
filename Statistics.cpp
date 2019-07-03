@@ -27,8 +27,15 @@ Statistics* Statistics::getInstance() {
   return statsInstance;
 }
 
-void Statistics::printStats() {
+void Statistics::setMedianArraySize() {
+  cout << "numStudents" << numStudents << endl;
+  stuMedian = new int[numStudents];
+}
 
+void Statistics::printStats() {
+  for(int i = 0; i < numStudents; ++i) {
+    cout << "student median Number: " <<  stuMedian[i] << endl;
+  }
 }
 
 #endif
