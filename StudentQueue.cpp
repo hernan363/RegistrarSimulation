@@ -2,6 +2,7 @@
 #define STUDENTQUEUE_CPP
 
 #include "StudentQueue.h"
+
 StudentQueue* StudentQueue::firstInstance = 0;
 
 StudentQueue::StudentQueue(){

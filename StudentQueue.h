@@ -4,8 +4,6 @@
 #include "Queue.h"
 #include "Student.h"
 
-#include <iostream>
-
 using namespace std;
 
 class StudentQueue {
@@ -22,10 +20,5 @@ private:
   static StudentQueue* firstInstance;
   Queue<Student> stuQ;
 };
-
-
-
-
-
 
 #endif

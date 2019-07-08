@@ -11,7 +11,6 @@ using namespace std;
 
 class fileReader {
 private:
-  // WindowList* wL;
   StudentQueue* sQ;
   Window w;
   Student s;
@@ -26,7 +25,7 @@ private:
 public:
   WindowLists* wQ;
 
-  void fillQueue(const char* fileName);
+  bool fillQueue(const char* fileName);
 
   fileReader();
   ~fileReader();

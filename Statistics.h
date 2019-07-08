@@ -1,7 +1,7 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
-#include <iostream>
+#include <bits/stdc++.h> // sort() function for median student
 
 using namespace std;
 
@@ -9,23 +9,24 @@ class Statistics{
 public:
 
   //STUDENT STATISTICS
-  int totalStuWaitTime;
-  int longestStuWaitTime;
-  int numStuWaitOverTen;
-  int* stuMedian;
+  int totalStuWaitTime; //totalStudent wait time
+  int longestStuWaitTime; // longest student wait time
+  int numStuWaitOverTen; // number of students who waited over ten minutes
+  int numStudents; //number of students
+
+    //Median
+  int* stuMedian; //student median array to hold all the statistics
+  float medianValue; // final median value
 
   //WINDOW STATISTICS
-  int avgWinIdleTime;
-  int longestWinWaitTime;
-  int numWinWaitOverFive;
-
-  int numStudents;
+  int avgWinIdleTime; //average window idle time
+  int longestWinWaitTime; // longest window idle time
+  int numWinWaitOverFive; // number of windows that waited over give minutes
 
   static Statistics* getInstance();
 
-  void printStats();
   void setMedianArraySize();
-  void sort();
+  void setMedianArrayValue();
 
   Statistics();
   ~Statistics();

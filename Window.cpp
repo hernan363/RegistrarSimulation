@@ -1,7 +1,6 @@
 #ifndef WINDOW_CPP
 #define WINDOW_CPP
 #include "Window.h"
-#include <iostream>
 
 using namespace std;
 Window::Window(){
@@ -20,15 +19,12 @@ Window::Window(int id){
 	idleForFive = false;
 }
 
-
 bool operator==(const Window& window, const Window& window2) {
-	cout << window.id << " : " << window2.id << endl;
 	if(window.id != window2.id) {
 		return false;
 	}
 	return true;
 }
-
 
 Window::~Window(){}
 #endif

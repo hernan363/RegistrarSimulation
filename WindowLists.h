@@ -5,8 +5,6 @@
 #include "Window.h"
 #include "Statistics.h"
 
-#include <iostream>
-
 class WindowLists {
 public:
   ListNode<Window>* cursor;

@@ -15,7 +15,6 @@ Simulation::Simulation() {
 Simulation::~Simulation(){}
 
 void Simulation::simulate() {
-  cout << "ROUND: " << count << endl;
   stats->numStudents = sQ->returnSize();
   wQ->totalNumWindows = wQ->winQ.getSize();
   stats->setMedianArraySize();
@@ -26,9 +25,8 @@ void Simulation::simulate() {
     wQ->reopenWindow();
     ++count;
   }
-  // stats->stuMedian.sort();
+  stats->setMedianArrayValue();
   runWindowStatistics();
-  stats->printStats();
 }
 
 void Simulation::run() {
@@ -37,13 +35,8 @@ void Simulation::run() {
       //removes the student and window their respective queues
       s = sQ->removeStudent();
       wQ->removeWindow(s.reqTime);
-      cout << "ID: " << w.id << " || HAS A TOTAL IDLE TIME OF: " << w.totalIdle << endl;
-      cout << "Student: " << s.arvTime << " count "<< count << endl;
       ///////Student Statistics////////////
       //adding to the median array//
-      cout <<"returning size " << sQ->returnSize() <<  endl;
-      cout << "wait time: " << s.waitTime << endl;
-
       s.waitTime = count - s.arvTime;
       stats->totalStuWaitTime += s.waitTime;
       stats->stuMedian[sQ->returnSize()] = s.waitTime;

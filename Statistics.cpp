@@ -11,6 +11,7 @@ Statistics::Statistics() {
   longestStuWaitTime = 0;
   numStuWaitOverTen = 0;
   numStudents = 0;
+  medianValue = 0;
 
   //WINDOW STATISTICS
   avgWinIdleTime = 0;
@@ -28,13 +29,22 @@ Statistics* Statistics::getInstance() {
 }
 
 void Statistics::setMedianArraySize() {
-  cout << "numStudents" << numStudents << endl;
   stuMedian = new int[numStudents];
 }
 
-void Statistics::printStats() {
-  for(int i = 0; i < numStudents; ++i) {
-    cout << "student median Number: " <<  stuMedian[i] << endl;
+void Statistics::setMedianArrayValue() {
+  //sort the Array
+  sort(stuMedian,stuMedian+numStudents);
+
+  //find the median value and check that it is in the middle
+  medianValue = ((float)numStudents-1)/2;
+  if(floor(medianValue) == medianValue) {
+    //whole Number
+    medianValue = stuMedian[(int)medianValue];
+  } else {
+    medianValue = (
+      stuMedian[(int)floor(medianValue)] + stuMedian[(int)ceil(medianValue)]
+    )/2;
   }
 }
 

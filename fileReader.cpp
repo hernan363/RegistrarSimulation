@@ -14,11 +14,12 @@ fileReader::fileReader(){
 
 fileReader::~fileReader(){}
 
-void fileReader::fillQueue(const char* fileName) {
+bool fileReader::fillQueue(const char* fileName) {
   myFile.open(fileName);
 
   if(!myFile.is_open()) {
     cout << "file could not open" << endl;
+    return false;
   } else {
     getline(myFile, line);
 
@@ -39,6 +40,7 @@ void fileReader::fillQueue(const char* fileName) {
         sQ->addStudent(s);
       }
     }
+    return true;
   }
 }
 #endif
