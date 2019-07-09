@@ -74,7 +74,7 @@ void DoublyLinkedList<E>::insertBack(E data){
 //removes the first node
 template <typename E>
 E DoublyLinkedList<E>::removeFront(){
-	//nmake neccessary checks
+	//make neccessary checks
 
 	ListNode<E> *temp = front;
 

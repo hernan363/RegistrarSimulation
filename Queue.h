@@ -9,7 +9,6 @@ template <typename E>
 class Queue{
 public:
 	Queue();
-	// Queue(int maxSize);
 	~Queue();
 
 	void insert(E data); // enqueue
@@ -23,10 +22,6 @@ public:
 	int mSize;
 
 	DoublyLinkedList<E> D;
-
-	// void printAll();
-
-
 };
 //.cpp
 
@@ -70,11 +65,4 @@ int Queue<E>::isEmpty(){
 	return (D.size == 0);
 }
 
-// //prints the whole queue
-// template<typename E>
-// void Queue<E>::printAll() {
-// 	while(getSize() != 0){
-// 		cout << remove() << endl;
-// 	}
-// }
 #endif

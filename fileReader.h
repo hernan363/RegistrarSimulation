@@ -22,6 +22,7 @@ private:
   string line;
   Student createStudent(int arrivalTime, int requiredTime);
   Window createWindow();
+  void add_Windows_To_Queue();
 public:
   WindowLists* wQ;
 

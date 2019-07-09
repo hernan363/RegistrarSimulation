@@ -10,19 +10,21 @@ using namespace std;
 class Simulation {
 public:
   Simulation();
-  ~Simulation();
   void simulate();
+  ~Simulation();
+
 private:
   int count;
-  Statistics* stats;
-  StudentQueue* sQ;
-  WindowLists* wQ;
-  Student s;
-  Window w;
-  // ListNode<Window* w;
+  Statistics* stats; // statistics
+  StudentQueue* sQ; //Student Queue
+  WindowLists* wQ; // Window Queue
+  Student s; // student
+  Window w; // window
 
-  void run();
-  void runWindowStatistics();
+  void serviceStudents();
+  void setTotalSizes();
+  void serviceOneStudent();
+
 };
 
 #endif

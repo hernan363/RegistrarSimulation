@@ -20,10 +20,9 @@ WindowLists* WindowLists::getInstance() {
 }
 
 //reopens and decrements the timeTilOpen;
-void WindowLists::reopenWindow(){
+void WindowLists::reopenWindow() {
   cursor = winL.front;
   while(cursor != NULL) {
-    //reopen window if not decrement the timeTileOpen
     if(cursor->data.timeTilOpen == 0) {
       w = cursor->data;
       cursor = cursor->next;
@@ -36,7 +35,7 @@ void WindowLists::reopenWindow(){
   }
 }
 
-void WindowLists::winStatistics() {
+void WindowLists::insertWindowStatistics() {
   cursor = winQ.D.front;
   while(cursor != NULL) {
     if(cursor->data.idleForFive == true) {
@@ -58,19 +57,17 @@ void WindowLists::addWindow(Window w) {
   winQ.insert(w);
 }
 
-void WindowLists::removeWindow(int stuTimeNeeded){
-
+void WindowLists::removeWindow(int stuTimeNeeded) {
   w = winQ.remove();
 
   w.timeTilOpen = stuTimeNeeded;
-
   w.totalIdle += w.idle;
 
   if(w.idle > 5) {
     w.idleForFive = true;
   }
-  w.idle = 0;
 
+  w.idle = 0;
   winL.insertBack(w);
 }
 

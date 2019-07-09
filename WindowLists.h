@@ -7,32 +7,28 @@
 
 class WindowLists {
 public:
-  ListNode<Window>* cursor;
-  // Window* cursor;
-  int returnListSize();
-
   static WindowLists* getInstance();
-  void addWindow(Window w);
-  void removeWindow(int stuTimeNeeded);
   WindowLists();
   ~WindowLists();
+  void addWindow(Window w);
+  void removeWindow(int stuTimeNeeded);
+  void reopenWindow();
+  void insertWindowStatistics();
+  void increaseIdleTimer();
 
   int returnSize();
+  int returnListSize();
+
   bool findOpenWindow();
-  void reopenWindow();
-  void winStatistics();
-  void increaseIdleTimer();
-  // void printList();
+
   Queue<Window> winQ;
   DoublyLinkedList<Window> winL;
   int totalNumWindows;
 
 private:
-  Window temp;
-
   Window w;
   Statistics* stats;
-
+  ListNode<Window>* cursor;
   static WindowLists* windowInstance;
 
 };

@@ -15,47 +15,53 @@ Simulation::Simulation() {
 Simulation::~Simulation(){}
 
 void Simulation::simulate() {
-  stats->numStudents = sQ->returnSize();
-  wQ->totalNumWindows = wQ->winQ.getSize();
-  stats->setMedianArraySize();
-  //window size = 5
+  setTotalSizes();
   while(sQ->returnSize() != 0 || wQ->returnSize() != wQ->totalNumWindows) {
-    run();
+    serviceStudents();
     wQ->increaseIdleTimer();
     wQ->reopenWindow();
     ++count;
   }
   stats->setMedianArrayValue();
-  runWindowStatistics();
+  wQ->insertWindowStatistics();
 }
 
-void Simulation::run() {
+void Simulation::serviceStudents() {
+  //Check if there are students in the queue
+  //and if there are windows working
   while(sQ->returnSize() != 0 && sQ->peekFront().arvTime <= count) {
     if(wQ->returnSize() != 0) {
-      //removes the student and window their respective queues
-      s = sQ->removeStudent();
-      wQ->removeWindow(s.reqTime);
-      ///////Student Statistics////////////
-      //adding to the median array//
-      s.waitTime = count - s.arvTime;
-      stats->totalStuWaitTime += s.waitTime;
-      stats->stuMedian[sQ->returnSize()] = s.waitTime;
-
-
-      if(s.waitTime > stats->longestStuWaitTime) {
-        stats->longestStuWaitTime = s.waitTime;
-      }
-
-      if(s.waitTime > 10) {
-        ++stats->numStuWaitOverTen;
-      }
+      serviceOneStudent();
     } else {
       break;
     }
   }
 }
 
-void Simulation::runWindowStatistics() {
-  wQ->winStatistics();
+void Simulation::serviceOneStudent() {
+  //removes the student and window from their respective queues
+  s = sQ->removeStudent();
+  wQ->removeWindow(s.reqTime);
+
+  ///////Updating Student Statistics////////////
+  s.waitTime = count - s.arvTime;
+  stats->totalStuWaitTime += s.waitTime;
+
+  stats->stuMedian[sQ->returnSize()] = s.waitTime;//adding to the median array
+
+  if(s.waitTime > stats->longestStuWaitTime) {
+    stats->longestStuWaitTime = s.waitTime;
+  }
+
+  if(s.waitTime > 10) {
+    ++stats->numStuWaitOverTen;
+  }
 }
+
+void Simulation::setTotalSizes() {
+  stats->numStudents = sQ->returnSize(); // setting number of students
+  wQ->totalNumWindows = wQ->winQ.getSize(); //setting number of windows
+  stats->setMedianArraySize(); // setting size of the array
+}
+
 #endif
