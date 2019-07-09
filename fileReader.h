@@ -15,14 +15,14 @@ private:
   Window w;
   Student s;
 
-  int time;
+  int timeArrived;
   int numStudents;
 
   ifstream myFile;
   string line;
   Student createStudent(int arrivalTime, int requiredTime);
   Window createWindow();
-  void add_Windows_To_Queue();
+  void addWindowsToQueue();
 public:
   WindowLists* wQ;
 

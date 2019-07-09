@@ -7,7 +7,7 @@
 
 fileReader::fileReader(){
   line = "";
-  time = 0;
+  timeArrived = 0;
   numStudents = 0;
   sQ = StudentQueue::getInstance();
   wQ = WindowLists::getInstance();
@@ -15,6 +15,7 @@ fileReader::fileReader(){
 
 fileReader::~fileReader(){}
 
+//comments describe each getline
 bool fileReader::fillQueue(const char* fileName) {
   myFile.open(fileName);
 
@@ -22,18 +23,18 @@ bool fileReader::fillQueue(const char* fileName) {
     cout << "file could not open" << endl;
     return false;
   } else {
-    getline(myFile, line);
+    getline(myFile, line); // number of windows
 
-    add_Windows_To_Queue(); //adding Windows
+    addWindowsToQueue();
 
-    while(getline(myFile, line)) {
-      time = stoi(line);
-      getline(myFile,line);
+    while(getline(myFile, line)) { // time a student arrived
+      timeArrived = stoi(line);
+      getline(myFile,line);  // number of students at a given time
       numStudents = stoi(line);
 
       for(int i = 0; i < numStudents; ++i) {
-        getline(myFile, line);
-        s = Student(time, stoi(line));
+        getline(myFile, line); // amount of time a student needs at a window
+        s = Student(timeArrived, stoi(line));
         sQ->addStudent(s);
       }
     }
@@ -41,7 +42,7 @@ bool fileReader::fillQueue(const char* fileName) {
   }
 }
 
-void fileReader::add_Windows_To_Queue() {
+void fileReader::addWindowsToQueue() {
   for(int i = 0 ; i < stoi(line); ++i) {
     wQ->totalNumWindows++;
     w = Window(wQ->totalNumWindows);
